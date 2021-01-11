@@ -14,11 +14,11 @@ perl
 samtools (0.1.18 or higher)
 
 ## Input file
-** Two bam files (bam sorted by read name and bam sorted by genome coordinate)        
+** Two bam files (one bam sorted by read name and another sorted by genome coordinates)        
 ** Index file (.bai) for bam file sorted by genome coordinate         
 ** Fastq file of the sequence data
 
-If samtools is not installed in the environment, the path to execution file of samtools can be specified in the config file (pram.config).  
+If samtools is not installed in the environment, the path to the execution file of samtools can be specified within the config file (pram.config).  
 
 ## Output file format
 vcf file of SVs (somatic_SV.vcf)
@@ -39,12 +39,13 @@ sh CAMPHOR.sh ./example/NA18943.chr22.sort_by_name.test.bam ./example/NA18943.ch
 ```
 
 ## Parameter setting in configuration file
-We consider the parameter set in the provided configuration apprppreate for 20x coverage WGS data.  
+We consider the parameter set in the provided configuration appropriate for 20x coverage WGS data.  
 
-We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false potitives. But newer basecallers increase the accuracy and, smaller minimum indel length (50bp or smaller) can be used by changing the "MIN_INDEL_LENGTH" within pram.config file.
+We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false positives. But newer basecallers have increased accuracy and, smaller minimum indel length (50bp or smaller) can be used. For this, users can change the "MIN_INDEL_LENGTH" within pram.config file.
 
 ## Repeat filtering
-Our method filters SV candisates with repeat infromation (Repeat masker, Tandm repeat finder, Segmental duplication, Self-chain). Please prepare anntaiton files with the fllowing procedures.       
+Our method filters SV candisates with the provided repeat infromation (Repeat masker, Tandm repeat finder, Segmental duplication, Self-chain).     
+Please prepare anntaiton files with the following procedures.       
 
 
 Repeat masker　　     
@@ -72,7 +73,7 @@ python .src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2,2g
 ```
 
 ## Preformance
-Performance of this tool is provided in Fujimoto et al. (in rivision).
+Performance of this tool is provided in Fujimoto et al. (in revision).
 
 ## Licence
 GPL
