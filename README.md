@@ -72,7 +72,7 @@ Download chainSelf.txt file from http://hgdownload.soe.ucsc.edu/goldenPath/hg38/
 python .src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2,2g > ./data/chainSelf.txt
 ```
 
-## Preformance
+## Performance
 Performance of this tool is provided in Fujimoto et al. (in revision).
 
 ## Licence
