@@ -44,7 +44,7 @@ We consider the parameter set in the provided configuration apprppreate for 20x 
 We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false potitives. But newer basecallers increase the accuracy and, smaller minimum indel length (50bp or smaller) can be used by changing the "MIN_INDEL_LENGTH" within pram.config file.
 
 ## Repeat filtering
-Our method filter SV candisates with repeat infromation (Repeat masker, Tandm repeat finder, Segmental duplication, Self-chain). Please prepare anntaiton files with the fllowing procedures.       
+Our method filters SV candisates with repeat infromation (Repeat masker, Tandm repeat finder, Segmental duplication, Self-chain). Please prepare anntaiton files with the fllowing procedures.       
 
 
 Repeat masker　　     
