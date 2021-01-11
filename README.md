@@ -21,12 +21,14 @@ samtools (0.1.18 or higher)
 If samtools is not installed in the environment, the path to execution file of samtools can be specified in the config file (pram.config).  
 
 ## Output file format
-vcf file of SVs (SV.vcf)
+vcf file of SVs (somatic_SV.vcf)
 
 ## Usage
 ```
 cd <path to CAMPHOR>　　
-sh CAMPHOR.sh <bam of normal sample (sorted by read name)> <bam of normal sample (sorted by genome coordinate)> <fastq> <output>　　
+sh CAMPHOR_SVcall.sh <bam of cancer sample (sorted by read name)> <bam of cancer sample (sorted by genome coordinate)> <output directory of cancer>   
+sh CAMPHOR_SVcall.sh <bam of normal sample (sorted by read name)> <bam of normal sample (sorted by genome coordinate)> <output directory of normal>   
+sh CAMPHOR_comparison.sh <output directory of cancer> <output directory of normal> <bam of cancer sample (sorted by genome coordinate)> <bam of normal sample (sorted by genome coordinate)> <fastq file of cancer> <output directory>   
 ```
 
 ## Example
@@ -38,15 +40,12 @@ sh CAMPHOR.sh ./example/NA18943.chr22.sort_by_name.test.bam ./example/NA18943.ch
 
 ## Parameter setting in configuration file
 We consider the parameter set in the provided configuration apprppreate for 20x coverage WGS data.  
-If you would like to use different parameters, please make changes in the parm.config file.　　   
-In the current file, minimum variant alele frequency (MIN_VAF), minimu number of reads (MIN_READ_NUMBER) and minimum indel length (MIN_INDEL_LENGTH) (bp) are set ot 0.15, 2 and 100.　　  
-For greater depth of coverage, larger minimu number of reads sould be apprppreate. 　　  
 
-We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false potitives. But newer basecallers increase the accuracy and, smaller minimum indel length (50bp or smaller) and lower minimum variant alele frequency (0.1 or lower) can be used.
+We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false potitives. But newer basecallers increase the accuracy and, smaller minimum indel length (50bp or smaller) can be used by changing the "MIN_INDEL_LENGTH" within pram.config file.
 
 ## Repeat filtering
-If repeat infmarmaiton files are privided, our method filter SV candisates with repeat infromation (Repeat masker, Tandm repeat finder, Segmental duplication, Self-chain). This filter can increase specitficity.
-Please prepare anntaiton files with the fllowing procedures.
+Our method filter SV candisates with repeat infromation (Repeat masker, Tandm repeat finder, Segmental duplication, Self-chain). Please prepare anntaiton files with the fllowing procedures.       
+
 
 Repeat masker　　     
 Download rmsk.txt from http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/
