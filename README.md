@@ -3,7 +3,7 @@ somatic SV caller for long-reads
 
 Overview
 1. Idetify SV candidates from bam files for cancer and matched normal samples　　
-2. Compare SV candidates in cancer and matched normal samples and indetify somatic SV candidates     　　
+2. Compare SV candidates between cancer and matched normal samples and indetify somatic SV candidates     　　
 
 ## Requirement
 python3       
