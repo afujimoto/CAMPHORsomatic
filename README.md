@@ -71,9 +71,12 @@ Download chainSelf.txt file from http://hgdownload.soe.ucsc.edu/goldenPath/hg38/
 ```
 python .src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2,2g > ./data/chainSelf.txt
 ```
+## Data of noramal samples
+CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removed germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Uses can merge these files of other normal samples and save the same name in a different directory and assign the directory as <output directory of normal> for analusis with CAMPHOR_comparison.sh. This analysis increase porer to remove germline SVs.
 
 ## Performance
 Performance of this tool is provided in Fujimoto et al. (in revision).
+False positive rate with PCR validation was ~7% in our dataset.
 
 ## Licence
 GPL
