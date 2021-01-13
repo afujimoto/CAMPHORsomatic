@@ -33,9 +33,12 @@ sh CAMPHOR_comparison.sh <output directory of cancer> <output directory of norma
 
 ## Example
 ```
-git clone https://github.com/afujimoto/CAMPHOR.git　
-cd CAMPHOR/CAMPHOR　　
-sh CAMPHOR.sh ./example/NA18943.chr22.sort_by_name.test.bam ./example/NA18943.chr22.sort.test.bam ./example/NA18943.chr22.sort.test.fastq test
+git clone https://github.com/afujimoto/CAMPHOR.git　   
+cd CAMPHORsomatic/CAMPHORsomatic      　　
+sh CAMPHOR_SVcall.sh ./example/sample1.sort_by_name.test.bam ./example/sample1.sort.test.bam sample1   
+sh CAMPHOR_SVcall.sh ./example/sample2.sort_by_name.test.bam ./example/sample2.sort.test.bam sample2
+sh CAMPHOR_comparison.sh ./sample1 ./sample2 ./example/sample1.sort.test.bam ./example/sample2.sort.test.bam ./example/sample1.sort.test.fastq ./SV       
+
 ```
 
 ## Parameter setting in configuration file
