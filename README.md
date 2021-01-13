@@ -2,9 +2,9 @@
 somatic SV caller for long-reads
 
 Overview
-1. Idetify SV candidates from bam files for cancer and matched normal samples　　
-2. Compare SV candidates between cancer and matched normal samples and indetify somatic SV candidates     　　
-
+1.	Identify SV candidates from bam files for cancer and matched normal samples　　　　
+2.	Compare SV candidates between cancer and matched normal samples and identify somatic SV candidates　　　　　　
+  　　
 ## Requirement
 python3       
 pysam module of python
@@ -44,13 +44,14 @@ sh CAMPHOR_comparison.sh ./sample1 ./sample2 ./example/sample1.sort.test.bam ./e
 ## Parameter setting in configuration file
 We consider the parameter set in the provided configuration appropriate for 20x coverage WGS data.  
 
-We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false positives. But newer basecallers have increased accuracy and, smaller minimum indel length (50bp or smaller) can be used. For this, users can change the "MIN_INDEL_LENGTH" within pram.config file.
+We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false positives. But newer basecallers have increased accuracy and, smaller minimum indel length (50bp or smaller) can be used. For this, users can change the "MIN_INDEL_LENGTH" within the pram.config file.
 
 ## Repeat filtering
-Our method filters SV candisates with the provided repeat infromation (Repeat masker, Tandm repeat finder, Segmental duplication, Self-chain).     
-Please prepare anntaiton files with the following procedures.       
+Our method filters SV candidates with the provided repeat information (Repeat masker, Tandem repeat finder, Segmental duplication, Self-chain).        
+Please prepare annotation files with the following procedures.     
 
-Make a direcrory for repeat files in CAMPHORsomatic directory　　     
+
+Make a directory for repeat files in CAMPHORsomatic directory　　
 ```
 mkdir data
 ```
@@ -79,7 +80,7 @@ Download chainSelf.txt file from http://hgdownload.soe.ucsc.edu/goldenPath/hg38/
 python .src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2,2g > ./data/chainSelf.txt
 ```
 ## Data of noramal samples
-CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removed germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Users can merge these SV files of other normal samples, and save the same name in a new directory. The new directory can be used as <output directory of normal> in analysis with CAMPHOR_comparison.sh. This analysis increases porer to remove germline SVs.
+CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removes germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Users can merge these SV files of other normal samples, and save the same name in a new directory. The new directory can be used as <output directory of normal> in analysis with CAMPHOR_comparison.sh. This analysis increases power to remove germline SVs.
 
 ## Performance
 False positive rate was estimated to be ~7% with PCR in a liver cancer sample set (Fujimoto et al. in revision).
