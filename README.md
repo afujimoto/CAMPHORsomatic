@@ -59,7 +59,7 @@ mkdir data
 Repeat masker　　     
 Download rmsk.txt from http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/
 ```
-grep Simple_repeat <path to rmsk.txt>|python .src/repeat/rmsk.py /dev/stdin > ./data/rmsk.txt
+grep Simple_repeat <path to rmsk.txt>|python ./src/repeat/rmsk.py /dev/stdin > ./data/rmsk.txt
 ```
 
 Tandem repeat     
@@ -77,7 +77,7 @@ python ./src/repeat/seg_dup.py <path to genomicSuperDups.txt>|sort -k1,1 -k2,2g 
 Self-chain　　     
 Download chainSelf.txt file from http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/　　
 ```
-python .src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2,2g > ./data/chainSelf.txt
+python ./src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2,2g > ./data/chainSelf.txt
 ```
 ## Data of noramal samples
 CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removes germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Users can merge these SV files of other normal samples, and save the same name in a new directory. The new directory can be used as <output directory of normal> in analysis with CAMPHOR_comparison.sh. This analysis increases power to remove germline SVs.
