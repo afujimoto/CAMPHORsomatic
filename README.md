@@ -50,7 +50,7 @@ We developed this method with nanopore sequence data basecalled by albacore (tot
 Our method filters SV candisates with the provided repeat infromation (Repeat masker, Tandm repeat finder, Segmental duplication, Self-chain).     
 Please prepare anntaiton files with the following procedures.       
 
-Make a direcrory for repeat files　　     
+Make a direcrory for repeat files in CAMPHORsomatic directory　　     
 ```
 mkdir data
 ```
