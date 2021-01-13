@@ -82,7 +82,7 @@ python .src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2,2g
 CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removed germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Users can merge these SV files of other normal samples, and save the same name in a new directory. The new directory can be used as <output directory of normal> in analysis with CAMPHOR_comparison.sh. This analysis increases porer to remove germline SVs.
 
 ## Performance
-False positive rate was estimated to be ~7% in a liver cancer samlpe set (Fujimoto et al. in revision).
+False positive rate was estimated to be ~7% with PCR in a liver cancer samlpe set (Fujimoto et al. in revision).
 
 
 ## Licence
