@@ -15,8 +15,8 @@ samtools (0.1.18 or higher)
 
 ## Input file
 ** Two bam files (one bam sorted by read name and another sorted by genome coordinates) for cancer and matched-normal samples        
-** Index file (.bai) for bam files sorted by genome coordinate         
-** Fastq file of the cancer
+** Index file (.bai) for bam files sorted by genome coordinates         
+** Fastq file of cancer
 
 If samtools is not installed in the environment, the path to the execution file of samtools can be specified within the config file (pram.config).  
 
