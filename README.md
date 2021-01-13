@@ -33,7 +33,7 @@ sh CAMPHOR_comparison.sh <output directory of cancer> <output directory of norma
 
 ## Example
 ```
-git clone https://github.com/afujimoto/CAMPHORsomatic.git　   
+git clone https://github.com/afujimoto/CAMPHORsomatic　       
 cd CAMPHORsomatic/CAMPHORsomatic      　　
 sh CAMPHOR_SVcall.sh ./example/sample1.sort_by_name.test.bam ./example/sample1.sort.test.bam sample1   
 sh CAMPHOR_SVcall.sh ./example/sample2.sort_by_name.test.bam ./example/sample2.sort.test.bam sample2
@@ -50,6 +50,10 @@ We developed this method with nanopore sequence data basecalled by albacore (tot
 Our method filters SV candisates with the provided repeat infromation (Repeat masker, Tandm repeat finder, Segmental duplication, Self-chain).     
 Please prepare anntaiton files with the following procedures.       
 
+Make a direcrory for repeat files　　     
+```
+mkdir data
+```
 
 Repeat masker　　     
 Download rmsk.txt from http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/
