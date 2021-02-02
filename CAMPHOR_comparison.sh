@@ -70,152 +70,152 @@ NORMAL_INS=$NORMAL_OUTPUT/INS_candidate.txt0
 
 echo "Deletion"
 #echo "python ./src/compare_with_normal.py $NORMAL_DEL $CANCER_DEL 300 $NORMAL_BAM 7|python ./src/normal_filter.py /dev/stdin 7 8 10 > $OUTPUT/somatic_DEL_candidate1"
-python ./src/compare_with_normal.py $NORMAL_DEL $CANCER_DEL 300 $NORMAL_BAM 7|python ./src/normal_filter.py /dev/stdin 7 8 10 > $OUTPUT/somatic_DEL_candidate1
+python3 ./src/compare_with_normal.py $NORMAL_DEL $CANCER_DEL 300 $NORMAL_BAM 7|python3 ./src/normal_filter.py /dev/stdin 7 8 10 > $OUTPUT/somatic_DEL_candidate1
 
 #echo "python ./src/somatic_DEL_filt.py $OUTPUT/somatic_DEL_candidate1 30 5000 10|python ./src/somatic_DEL_filter2.py /dev/stdin 20 0.1 50 0.3 0.3,1000,0.1 0.1 800 10 10 2 0 1 > $OUTPUT/somatic_DEL_candidate2"
-python ./src/somatic_DEL_filt.py $OUTPUT/somatic_DEL_candidate1 30 5000 10|python ./src/somatic_DEL_filter2.py /dev/stdin 20 0.1 50 0.3 0.3,1000,0.1 0.1 800 10 10 2 0 1 > $OUTPUT/somatic_DEL_candidate2
+python3 ./src/somatic_DEL_filt.py $OUTPUT/somatic_DEL_candidate1 30 5000 10|python3 ./src/somatic_DEL_filter2.py /dev/stdin 20 0.1 50 0.3 0.3,1000,0.1 0.1 800 10 10 2 0 1 > $OUTPUT/somatic_DEL_candidate2
 
 #echo "python ./src/VAF.py $OUTPUT/somatic_DEL_candidate2 $CANCER_BAM 0 30 1 4 11 > $OUTPUT/somatic_DEL_candidate3"
-python ./src/VAF.py $OUTPUT/somatic_DEL_candidate2 $CANCER_BAM 0 30 1 4 11 > $OUTPUT/somatic_DEL_candidate3
+python3 ./src/VAF.py $OUTPUT/somatic_DEL_candidate2 $CANCER_BAM 0 30 1 4 11 > $OUTPUT/somatic_DEL_candidate3
 
 #echo "python ./src/add_rep3.py $SR $OUTPUT/somatic_DEL_candidate3 2000|python ./src/add_rep3.py $RMSK /dev/stdin 2000 > $OUTPUT/somatic_DEL_candidate4"
-python ./src/add_rep3.py $SR $OUTPUT/somatic_DEL_candidate3 2000|python ./src/add_rep3.py $RMSK /dev/stdin 2000 > $OUTPUT/somatic_DEL_candidate4
+python3 ./src/add_rep3.py $SR $OUTPUT/somatic_DEL_candidate3 2000|python3 ./src/add_rep3.py $RMSK /dev/stdin 2000 > $OUTPUT/somatic_DEL_candidate4
 
 #echo "python ./src/somatic_DEL_filter3.py $OUTPUT/somatic_DEL_candidate4 0.8 > $OUTPUT/somatic_DEL_candidate5"
-python ./src/somatic_DEL_filter3.py $OUTPUT/somatic_DEL_candidate4 0.8 > $OUTPUT/somatic_DEL_candidate5
+python3 ./src/somatic_DEL_filter3.py $OUTPUT/somatic_DEL_candidate4 0.8 > $OUTPUT/somatic_DEL_candidate5
 
 #echo "python ./src/add_rep.py $SEGDUP $OUTPUT/somatic_DEL_candidate5 > $OUTPUT/somatic_DEL_candidate6"
-python ./src/add_rep.py $SEGDUP $OUTPUT/somatic_DEL_candidate5 > $OUTPUT/somatic_DEL_candidate6
+python3 ./src/add_rep.py $SEGDUP $OUTPUT/somatic_DEL_candidate5 > $OUTPUT/somatic_DEL_candidate6
 
 #echo "python ./src/add_rep_somatic2.py $SELF_CHAIN $OUTPUT/somatic_DEL_candidate6|python ./src/filter_same_repeat.py /dev/stdin -2 -1 > $OUTPUT/somatic_DEL_candidate7"
-python ./src/add_rep_somatic2.py $SELF_CHAIN $OUTPUT/somatic_DEL_candidate6|python ./src/filter_same_repeat.py /dev/stdin -2 -1 > $OUTPUT/somatic_DEL_candidate7
+python3 ./src/add_rep_somatic2.py $SELF_CHAIN $OUTPUT/somatic_DEL_candidate6|python3 ./src/filter_same_repeat.py /dev/stdin -2 -1 > $OUTPUT/somatic_DEL_candidate7
 
 #echo "python ./src/somatic_SB_CH.py $OUTPUT/somatic_DEL_candidate7 300 $CANCER_BAM $SR $RMSK $FASTQ 14 14|python ./src/somatic_DEL_filter4.py /dev/stdin 0,500,1000 4,3,2 14 15 50 0.03 12 18 13 0.3 > $OUTPUT/somatic_DEL_candidate8"
-python ./src/somatic_SB_CH.py $OUTPUT/somatic_DEL_candidate7 300 $CANCER_BAM $SR $RMSK $FASTQ 14 14|python ./src/somatic_DEL_filter4.py /dev/stdin 0,500,1000 4,3,2 14 15 50 0.03 12 18 13 0.3 > $OUTPUT/somatic_DEL_candidate8
+python3 ./src/somatic_SB_CH.py $OUTPUT/somatic_DEL_candidate7 300 $CANCER_BAM $SR $RMSK $FASTQ 14 14|python3 ./src/somatic_DEL_filter4.py /dev/stdin 0,500,1000 4,3,2 14 15 50 0.03 12 18 13 0.3 > $OUTPUT/somatic_DEL_candidate8
 
 #echo "python ./src/compare_with_normal.2.py $NORMAL_DEL $OUTPUT/somatic_DEL_candidate8 100000 0.8 1000 7 > $OUTPUT/somatic_DEL_candidate_filtered.txt"
-python ./src/compare_with_normal.2.py $NORMAL_DEL $OUTPUT/somatic_DEL_candidate8 100000 0.8 1000 7 > $OUTPUT/somatic_DEL_candidate_filtered.txt
+python3 ./src/compare_with_normal.2.py $NORMAL_DEL $OUTPUT/somatic_DEL_candidate8 100000 0.8 1000 7 > $OUTPUT/somatic_DEL_candidate_filtered.txt
 
 rm $OUTPUT/somatic_DEL_candidate1 $OUTPUT/somatic_DEL_candidate2 $OUTPUT/somatic_DEL_candidate3 $OUTPUT/somatic_DEL_candidate4 $OUTPUT/somatic_DEL_candidate5 $OUTPUT/somatic_DEL_candidate6 $OUTPUT/somatic_DEL_candidate7 $OUTPUT/somatic_DEL_candidate8
 
 echo "Inversion"
 #echo "python ./src/INV_filter.py $CANCER_INV|python ./src/INV_filter2.py /dev/stdin 20 500 0.1 0.1 800 1 7 2 0 1 > $OUTPUT/somatic_INV_candidate"
-python ./src/INV_filter.py $CANCER_INV|python ./src/INV_filter2.py /dev/stdin 20 500 0.1 0.1 800 1 7 2 0 1 > $OUTPUT/somatic_INV_candidate
+python3 ./src/INV_filter.py $CANCER_INV|python3 ./src/INV_filter2.py /dev/stdin 20 500 0.1 0.1 800 1 7 2 0 1 > $OUTPUT/somatic_INV_candidate
 
 #echo "python ./src/compare_with_normal.py $NORMAL_INV $OUTPUT/somatic_INV_candidate 300 $NORMAL_BAM 8 > $OUTPUT/somatic_INV_candidate1"
-python ./src/compare_with_normal.py $NORMAL_INV $OUTPUT/somatic_INV_candidate 300 $NORMAL_BAM 8 > $OUTPUT/somatic_INV_candidate1
+python3 ./src/compare_with_normal.py $NORMAL_INV $OUTPUT/somatic_INV_candidate 300 $NORMAL_BAM 8 > $OUTPUT/somatic_INV_candidate1
 
 #echo "python ./src/normal_filter.py $OUTPUT/somatic_INV_candidate1 8 9 10 > $OUTPUT/somatic_INV_candidate2"
-python ./src/normal_filter.py $OUTPUT/somatic_INV_candidate1 8 9 10 > $OUTPUT/somatic_INV_candidate2
+python3 ./src/normal_filter.py $OUTPUT/somatic_INV_candidate1 8 9 10 > $OUTPUT/somatic_INV_candidate2
 
 #echo "python ./src/add_rep_somatic3.py $SEGDUP $OUTPUT/somatic_INV_candidate2 > $OUTPUT/somatic_INV_candidate3"
-python ./src/add_rep_somatic3.py $SEGDUP $OUTPUT/somatic_INV_candidate2 > $OUTPUT/somatic_INV_candidate3
+python3 ./src/add_rep_somatic3.py $SEGDUP $OUTPUT/somatic_INV_candidate2 > $OUTPUT/somatic_INV_candidate3
 
 #echo "python ./src/add_rep_somatic4.py $SELF_CHAIN $OUTPUT/somatic_INV_candidate3|python ./src/filter_same_repeat2.py /dev/stdin -4 -3|python ./src/filter_same_repeat2.py /dev/stdin -2 -1 > $OUTPUT/somatic_INV_candidate4"
-python ./src/add_rep_somatic4.py $SELF_CHAIN $OUTPUT/somatic_INV_candidate3|python ./src/filter_same_repeat2.py /dev/stdin -4 -3|python ./src/filter_same_repeat2.py /dev/stdin -2 -1 > $OUTPUT/somatic_INV_candidate4
+python3 ./src/add_rep_somatic4.py $SELF_CHAIN $OUTPUT/somatic_INV_candidate3|python3 ./src/filter_same_repeat2.py /dev/stdin -4 -3|python3 ./src/filter_same_repeat2.py /dev/stdin -2 -1 > $OUTPUT/somatic_INV_candidate4
 
 #echo "python ./src/VAF.py $OUTPUT/somatic_INV_candidate4 $CANCER_BAM 0.03 30 0.5 4 10 > $OUTPUT/somatic_INV_candidate5"
-python ./src/VAF.py $OUTPUT/somatic_INV_candidate4 $CANCER_BAM 0.03 30 0.5 4 10 > $OUTPUT/somatic_INV_candidate5
+python3 ./src/VAF.py $OUTPUT/somatic_INV_candidate4 $CANCER_BAM 0.03 30 0.5 4 10 > $OUTPUT/somatic_INV_candidate5
 
 #echo "python ./src/SB_CH2.py $OUTPUT/somatic_INV_candidate5 $FASTQ 2 13 13 > $OUTPUT/somatic_INV_candidate6"
-python ./src/SB_CH2.py $OUTPUT/somatic_INV_candidate5 $FASTQ 2 13 13 > $OUTPUT/somatic_INV_candidate6
+python3 ./src/SB_CH2.py $OUTPUT/somatic_INV_candidate5 $FASTQ 2 13 13 > $OUTPUT/somatic_INV_candidate6
 
 #echo "python ./src/add_rep3.py $SR $OUTPUT/somatic_INV_candidate6 2000|python ./src/add_rep3.py $RMSK /dev/stdin 2000|python ./src/TRS_filt3.py /dev/stdin 0.8 50|python ./src/INV_filt.py /dev/stdin 0.8 14|python ./src/TRS_filt4.py /dev/stdin 12 0.3 > $OUTPUT/somatic_INV_candidate7"
-python ./src/add_rep3.py $SR $OUTPUT/somatic_INV_candidate6 2000|python ./src/add_rep3.py $RMSK /dev/stdin 2000|python ./src/TRS_filt3.py /dev/stdin 0.8 50|python ./src/INV_filt.py /dev/stdin 0.8 14|python ./src/TRS_filt4.py /dev/stdin 12 0.3 > $OUTPUT/somatic_INV_candidate7
+python3 ./src/add_rep3.py $SR $OUTPUT/somatic_INV_candidate6 2000|python3 ./src/add_rep3.py $RMSK /dev/stdin 2000|python3 ./src/TRS_filt3.py /dev/stdin 0.8 50|python3 ./src/INV_filt.py /dev/stdin 0.8 14|python3 ./src/TRS_filt4.py /dev/stdin 12 0.3 > $OUTPUT/somatic_INV_candidate7
 
 #echo "python ./src/INV_filter3.py $OUTPUT/somatic_INV_candidate7 14|python ./src/compare_with_normal.2.py $NORMAL_INV /dev/stdin 0 0.8 1000 7 > $OUTPUT/somatic_INV_candidate_filtered.txt"
-python ./src/INV_filter3.py $OUTPUT/somatic_INV_candidate7 14|python ./src/compare_with_normal.2.py $NORMAL_INV /dev/stdin 0 0.8 1000 7 > $OUTPUT/somatic_INV_candidate_filtered.txt
+python3 ./src/INV_filter3.py $OUTPUT/somatic_INV_candidate7 14|python3 ./src/compare_with_normal.2.py $NORMAL_INV /dev/stdin 0 0.8 1000 7 > $OUTPUT/somatic_INV_candidate_filtered.txt
 
 rm $OUTPUT/somatic_INV_candidate $OUTPUT/somatic_INV_candidate1 $OUTPUT/somatic_INV_candidate2 $OUTPUT/somatic_INV_candidate3 $OUTPUT/somatic_INV_candidate4 $OUTPUT/somatic_INV_candidate5 $OUTPUT/somatic_INV_candidate6 $OUTPUT/somatic_INV_candidate7 
 
 echo "Chromosoal translocation"
 #echo "python ./src/INV_filter.py $CANCER_CHR|python ./src/CHR_filter.py /dev/stdin 20 1500 0.1 0.1 800 1 7 2 0 1 > $OUTPUT/somatic_CHR_candidate"
-python ./src/INV_filter.py $CANCER_CHR|python ./src/CHR_filter.py /dev/stdin 20 1500 0.1 0.1 800 1 7 2 0 1 > $OUTPUT/somatic_CHR_candidate
+python3 ./src/INV_filter.py $CANCER_CHR|python3 ./src/CHR_filter.py /dev/stdin 20 1500 0.1 0.1 800 1 7 2 0 1 > $OUTPUT/somatic_CHR_candidate
 
 #echo "python ./src/compare_with_normal.py $NORMAL_CHR $OUTPUT/somatic_CHR_candidate 1500 $NORMAL_BAM 8|python ./src/normal_filter.py /dev/stdin 8 9 10 > $OUTPUT/somatic_CHR_candidate1"
-python ./src/compare_with_normal.py $NORMAL_CHR $OUTPUT/somatic_CHR_candidate 1500 $NORMAL_BAM 8|python ./src/normal_filter.py /dev/stdin 8 9 10 > $OUTPUT/somatic_CHR_candidate1
+python3 ./src/compare_with_normal.py $NORMAL_CHR $OUTPUT/somatic_CHR_candidate 1500 $NORMAL_BAM 8|python3 ./src/normal_filter.py /dev/stdin 8 9 10 > $OUTPUT/somatic_CHR_candidate1
 
 #echo "python ./src/add_rep_somatic3.py $SEGDUP $OUTPUT/somatic_CHR_candidate1 > $OUTPUT/somatic_CHR_candidate2"
-python ./src/add_rep_somatic3.py $SEGDUP $OUTPUT/somatic_CHR_candidate1 > $OUTPUT/somatic_CHR_candidate2
+python3 ./src/add_rep_somatic3.py $SEGDUP $OUTPUT/somatic_CHR_candidate1 > $OUTPUT/somatic_CHR_candidate2
 
 #echo "python ./src/add_rep_somatic4.py $SELF_CHAIN $OUTPUT/somatic_CHR_candidate2 > $OUTPUT/somatic_CHR_candidate3"
-python ./src/add_rep_somatic4.py $SELF_CHAIN $OUTPUT/somatic_CHR_candidate2 > $OUTPUT/somatic_CHR_candidate3
+python3 ./src/add_rep_somatic4.py $SELF_CHAIN $OUTPUT/somatic_CHR_candidate2 > $OUTPUT/somatic_CHR_candidate3
 
 #echo "python ./src/filter_same_repeat2.py $OUTPUT/somatic_CHR_candidate3 -4 -3|python ./src/filter_same_repeat2.py /dev/stdin -2 -1 > $OUTPUT/somatic_CHR_candidate4"
-python ./src/filter_same_repeat2.py $OUTPUT/somatic_CHR_candidate3 -4 -3|python ./src/filter_same_repeat2.py /dev/stdin -2 -1 > $OUTPUT/somatic_CHR_candidate4
+python3 ./src/filter_same_repeat2.py $OUTPUT/somatic_CHR_candidate3 -4 -3|python3 ./src/filter_same_repeat2.py /dev/stdin -2 -1 > $OUTPUT/somatic_CHR_candidate4
 
 #echo "python ./src/VAF.py $OUTPUT/somatic_CHR_candidate4 $CANCER_BAM 0.03 30 0.5 4 10 > $OUTPUT/somatic_CHR_candidate5"
-python ./src/VAF.py $OUTPUT/somatic_CHR_candidate4 $CANCER_BAM 0.03 30 0.5 4 10 > $OUTPUT/somatic_CHR_candidate5
+python3 ./src/VAF.py $OUTPUT/somatic_CHR_candidate4 $CANCER_BAM 0.03 30 0.5 4 10 > $OUTPUT/somatic_CHR_candidate5
 
 #echo "python ./src/SB_CH2.py $OUTPUT/somatic_CHR_candidate5 $FASTQ 2 13 13|python ./src/TRS_filt4.py /dev/stdin 12 0.3 > $OUTPUT/somatic_CHR_candidate_filtered.txt"
-python ./src/SB_CH2.py $OUTPUT/somatic_CHR_candidate5 $FASTQ 2 13 13|python ./src/TRS_filt4.py /dev/stdin 12 0.3 > $OUTPUT/somatic_CHR_candidate_filtered.txt
+python3 ./src/SB_CH2.py $OUTPUT/somatic_CHR_candidate5 $FASTQ 2 13 13|python3 ./src/TRS_filt4.py /dev/stdin 12 0.3 > $OUTPUT/somatic_CHR_candidate_filtered.txt
 
 rm $OUTPUT/somatic_CHR_candidate $OUTPUT/somatic_CHR_candidate1 $OUTPUT/somatic_CHR_candidate2 $OUTPUT/somatic_CHR_candidate3 $OUTPUT/somatic_CHR_candidate4 $OUTPUT/somatic_CHR_candidate5
 
 echo "Translocation"
 #echo "python ./src/INV_filter.py $CANCER_TRS|python ./src/INV_filter2.py /dev/stdin 20 500 0.1 0.1 800 1 7 2 0 1 > $OUTPUT/somatic_TRS_candidate"
-python ./src/INV_filter.py $CANCER_TRS|python ./src/INV_filter2.py /dev/stdin 20 500 0.1 0.1 800 1 7 2 0 1 > $OUTPUT/somatic_TRS_candidate
+python3 ./src/INV_filter.py $CANCER_TRS|python3 ./src/INV_filter2.py /dev/stdin 20 500 0.1 0.1 800 1 7 2 0 1 > $OUTPUT/somatic_TRS_candidate
 
 #echo "python ./src/compare_with_normal.py $NORMAL_TRS $OUTPUT/somatic_TRS_candidate 300 $NORMAL_BAM 8|python ./src/normal_filter.py /dev/stdin 8 9 10 > $OUTPUT/somatic_TRS_candidate1"
-python ./src/compare_with_normal.py $NORMAL_TRS $OUTPUT/somatic_TRS_candidate 300 $NORMAL_BAM 8|python ./src/normal_filter.py /dev/stdin 8 9 10 > $OUTPUT/somatic_TRS_candidate1
+python3 ./src/compare_with_normal.py $NORMAL_TRS $OUTPUT/somatic_TRS_candidate 300 $NORMAL_BAM 8|python3 ./src/normal_filter.py /dev/stdin 8 9 10 > $OUTPUT/somatic_TRS_candidate1
 
 #echo "python ./src/add_rep_somatic3.py $SEGDUP $OUTPUT/somatic_TRS_candidate1 > $OUTPUT/somatic_TRS_candidate2"
-python ./src/add_rep_somatic3.py $SEGDUP $OUTPUT/somatic_TRS_candidate1 > $OUTPUT/somatic_TRS_candidate2
+python3 ./src/add_rep_somatic3.py $SEGDUP $OUTPUT/somatic_TRS_candidate1 > $OUTPUT/somatic_TRS_candidate2
 
 #echo "python ./src/add_rep_somatic4.py $SELF_CHAIN $OUTPUT/somatic_TRS_candidate2 > $OUTPUT/somatic_TRS_candidate3"
-python ./src/add_rep_somatic4.py $SELF_CHAIN $OUTPUT/somatic_TRS_candidate2 > $OUTPUT/somatic_TRS_candidate3
+python3 ./src/add_rep_somatic4.py $SELF_CHAIN $OUTPUT/somatic_TRS_candidate2 > $OUTPUT/somatic_TRS_candidate3
 
 #echo "python ./src/filter_same_repeat2.py $OUTPUT/somatic_TRS_candidate3 -4 -3|python ./src/filter_same_repeat2.py /dev/stdin -2 -1 > $OUTPUT/somatic_TRS_candidate4"
-python ./src/filter_same_repeat2.py $OUTPUT/somatic_TRS_candidate3 -4 -3|python ./src/filter_same_repeat2.py /dev/stdin -2 -1 > $OUTPUT/somatic_TRS_candidate4
+python3 ./src/filter_same_repeat2.py $OUTPUT/somatic_TRS_candidate3 -4 -3|python3 ./src/filter_same_repeat2.py /dev/stdin -2 -1 > $OUTPUT/somatic_TRS_candidate4
 
 #echo "python ./src/VAF.py $OUTPUT/somatic_TRS_candidate4 $CANCER_BAM 0.03 30 0.5 4 10 > $OUTPUT/somatic_TRS_candidate5"
-python ./src/VAF.py $OUTPUT/somatic_TRS_candidate4 $CANCER_BAM 0.03 30 0.5 4 10 > $OUTPUT/somatic_TRS_candidate5
+python3 ./src/VAF.py $OUTPUT/somatic_TRS_candidate4 $CANCER_BAM 0.03 30 0.5 4 10 > $OUTPUT/somatic_TRS_candidate5
 
 #echo "python ./src/SB_CH2.py $OUTPUT/somatic_TRS_candidate5 $FASTQ 2 13 13 > $OUTPUT/somatic_TRS_candidate6"
-python ./src/SB_CH2.py $OUTPUT/somatic_TRS_candidate5 $FASTQ 2 13 13 > $OUTPUT/somatic_TRS_candidate6
+python3 ./src/SB_CH2.py $OUTPUT/somatic_TRS_candidate5 $FASTQ 2 13 13 > $OUTPUT/somatic_TRS_candidate6
 
 #echo "python ./src/add_rep3.py $SR $OUTPUT/somatic_TRS_candidate6 2000|python ./src/add_rep3.py $RMSK /dev/stdin 2000 > $OUTPUT/somatic_TRS_candidate7"
-python ./src/add_rep3.py $SR $OUTPUT/somatic_TRS_candidate6 2000|python ./src/add_rep3.py $RMSK /dev/stdin 2000 > $OUTPUT/somatic_TRS_candidate7
+python3 ./src/add_rep3.py $SR $OUTPUT/somatic_TRS_candidate6 2000|python3 ./src/add_rep3.py $RMSK /dev/stdin 2000 > $OUTPUT/somatic_TRS_candidate7
 
 #echo "python ./src/TRS_filt3.py $OUTPUT/somatic_TRS_candidate7 0.8 50 > $OUTPUT/somatic_TRS_candidate8"
-python ./src/TRS_filt3.py $OUTPUT/somatic_TRS_candidate7 0.8 50 > $OUTPUT/somatic_TRS_candidate8
+python3 ./src/TRS_filt3.py $OUTPUT/somatic_TRS_candidate7 0.8 50 > $OUTPUT/somatic_TRS_candidate8
 
 #echo "python ./src/TRS_filt4.py $OUTPUT/somatic_TRS_candidate8 12 0.3 > $OUTPUT/somatic_TRS_candidate9"
-python ./src/TRS_filt4.py $OUTPUT/somatic_TRS_candidate8 12 0.3 > $OUTPUT/somatic_TRS_candidate9
+python3 ./src/TRS_filt4.py $OUTPUT/somatic_TRS_candidate8 12 0.3 > $OUTPUT/somatic_TRS_candidate9
 
 #echo "python ./src/compare_with_normal.2.py $NORMAL_TRS $OUTPUT/somatic_TRS_candidate9 0 0.8 1000 7 > $OUTPUT/somatic_TRS_candidate_filtered.txt"
-python ./src/compare_with_normal.2.py $NORMAL_TRS $OUTPUT/somatic_TRS_candidate9 0 0.8 1000 7 > $OUTPUT/somatic_TRS_candidate_filtered.txt
+python3 ./src/compare_with_normal.2.py $NORMAL_TRS $OUTPUT/somatic_TRS_candidate9 0 0.8 1000 7 > $OUTPUT/somatic_TRS_candidate_filtered.txt
 
 rm $OUTPUT/somatic_TRS_candidate $OUTPUT/somatic_TRS_candidate1 $OUTPUT/somatic_TRS_candidate2 $OUTPUT/somatic_TRS_candidate3 $OUTPUT/somatic_TRS_candidate4 $OUTPUT/somatic_TRS_candidate5 $OUTPUT/somatic_TRS_candidate6 $OUTPUT/somatic_TRS_candidate7 $OUTPUT/somatic_TRS_candidate8 $OUTPUT/somatic_TRS_candidate9
 
 echo "Insertion"
 #echo "python ./src/INS_filt.py $CANCER_INS 100|python ./src/INS_filt1.py /dev/stdin 20 50 0.1 800 1 8 2 1 1 > $OUTPUT/somatic_INS_candidate"
-python ./src/INS_filt.py $CANCER_INS 100|python ./src/INS_filt1.py /dev/stdin 20 50 0.1 800 1 8 2 1 1 > $OUTPUT/somatic_INS_candidate 
+python3 ./src/INS_filt.py $CANCER_INS 100|python3 ./src/INS_filt1.py /dev/stdin 20 50 0.1 800 1 8 2 1 1 > $OUTPUT/somatic_INS_candidate 
 
 #echo "python ./src/VAF.INS.py $OUTPUT/somatic_INS_candidate $CANCER_BAM 0.03 30 2 4 9 > $OUTPUT/somatic_INS_candidate1"
-python ./src/VAF.INS.py $OUTPUT/somatic_INS_candidate $CANCER_BAM 0.03 30 2 4 9 > $OUTPUT/somatic_INS_candidate1
+python3 ./src/VAF.INS.py $OUTPUT/somatic_INS_candidate $CANCER_BAM 0.03 30 2 4 9 > $OUTPUT/somatic_INS_candidate1
 
 #echo "python ./src/INS_filt2.py $OUTPUT/somatic_INS_candidate1 1000 3 2,2 0.03 0.3 > $OUTPUT/somatic_INS_candidate2"
-python ./src/INS_filt2.py $OUTPUT/somatic_INS_candidate1 1000 3 2,2 0.03 0.3 > $OUTPUT/somatic_INS_candidate2
+python3 ./src/INS_filt2.py $OUTPUT/somatic_INS_candidate1 1000 3 2,2 0.03 0.3 > $OUTPUT/somatic_INS_candidate2
 
 #echo "python ./src/compare_with_normal.INS.py $NORMAL_INS $OUTPUT/somatic_INS_candidate1 500 0.5 3 1000 $NORMAL_BAM 11 > $OUTPUT/somatic_INS_candidate2"
-python ./src/compare_with_normal.INS.py $NORMAL_INS $OUTPUT/somatic_INS_candidate1 500 0.5 3 1000 $NORMAL_BAM 11 > $OUTPUT/somatic_INS_candidate2
+python3 ./src/compare_with_normal.INS.py $NORMAL_INS $OUTPUT/somatic_INS_candidate1 500 0.5 3 1000 $NORMAL_BAM 11 > $OUTPUT/somatic_INS_candidate2
 
 #echo "python ./src/INS_filt3.py $OUTPUT/somatic_INS_candidate2 10 0.3 4 > $OUTPUT/somatic_INS_candidate3"
-python ./src/INS_filt3.py $OUTPUT/somatic_INS_candidate2 10 0.3 4 > $OUTPUT/somatic_INS_candidate3
+python3 ./src/INS_filt3.py $OUTPUT/somatic_INS_candidate2 10 0.3 4 > $OUTPUT/somatic_INS_candidate3
 
 #echo "python ./src/add_rep.INS.py $SR $OUTPUT/somatic_INS_candidate3 500 > $OUTPUT/somatic_INS_candidate4"
-python ./src/add_rep.INS.py $SR $OUTPUT/somatic_INS_candidate3 500 > $OUTPUT/somatic_INS_candidate4
+python3 ./src/add_rep.INS.py $SR $OUTPUT/somatic_INS_candidate3 500 > $OUTPUT/somatic_INS_candidate4
 
 #echo "python ./src/add_rep.INS2.py $RMSK $OUTPUT/somatic_INS_candidate4 2000 > $OUTPUT/somatic_INS_candidate5"
-python ./src/add_rep.INS2.py $RMSK $OUTPUT/somatic_INS_candidate4 2000 > $OUTPUT/somatic_INS_candidate5
+python3 ./src/add_rep.INS2.py $RMSK $OUTPUT/somatic_INS_candidate4 2000 > $OUTPUT/somatic_INS_candidate5
 
 #echo "python ./src/INS_filt4.py $OUTPUT/somatic_INS_candidate5 2 -2|python ./src/INS_filt4.py /dev/stdin 1 -1 > $OUTPUT/somatic_INS_candidate_filtered.txt"
-python ./src/INS_filt4.py $OUTPUT/somatic_INS_candidate5 2 -2|python ./src/INS_filt4.py /dev/stdin 1 -1 > $OUTPUT/somatic_INS_candidate_filtered.txt
+python3 ./src/INS_filt4.py $OUTPUT/somatic_INS_candidate5 2 -2|python3 ./src/INS_filt4.py /dev/stdin 1 -1 > $OUTPUT/somatic_INS_candidate_filtered.txt
 
 rm $OUTPUT/somatic_INS_candidate $OUTPUT/somatic_INS_candidate1 $OUTPUT/somatic_INS_candidate2 $OUTPUT/somatic_INS_candidate3 $OUTPUT/somatic_INS_candidate4 $OUTPUT/somatic_INS_candidate5
 
 #echo "python ./src/vcf.py $OUTPUT/somatic_DEL_candidate_filtered.txt $OUTPUT/somatic_INS_candidate_filtered.txt $OUTPUT/somatic_INV_candidate_filtered.txt $OUTPUT/somatic_TRS_candidate_filtered.txt $OUTPUT/somatic_CHR_candidate_filtered.txt > $OUTPUT/somatic_SV.vcf"
-python ./src/vcf.py $OUTPUT/somatic_DEL_candidate_filtered.txt $OUTPUT/somatic_INS_candidate_filtered.txt $OUTPUT/somatic_INV_candidate_filtered.txt $OUTPUT/somatic_TRS_candidate_filtered.txt $OUTPUT/somatic_CHR_candidate_filtered.txt > $OUTPUT/somatic_SV.vcf
+python3 ./src/vcf.py $OUTPUT/somatic_DEL_candidate_filtered.txt $OUTPUT/somatic_INS_candidate_filtered.txt $OUTPUT/somatic_INV_candidate_filtered.txt $OUTPUT/somatic_TRS_candidate_filtered.txt $OUTPUT/somatic_CHR_candidate_filtered.txt > $OUTPUT/somatic_SV.vcf
 
 echo "Output file;" $OUTPUT/somatic_SV.vcf
