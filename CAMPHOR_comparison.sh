@@ -198,8 +198,8 @@ python3 ./src/VAF.INS.py $OUTPUT/somatic_INS_candidate $CANCER_BAM 0.03 30 2 4 9
 #echo "python ./src/INS_filt2.py $OUTPUT/somatic_INS_candidate1 1000 3 2,2 0.03 0.3 > $OUTPUT/somatic_INS_candidate2"
 python3 ./src/INS_filt2.py $OUTPUT/somatic_INS_candidate1 1000 3 2,2 0.03 0.3 > $OUTPUT/somatic_INS_candidate2
 
-#echo "python ./src/compare_with_normal.INS.py $NORMAL_INS $OUTPUT/somatic_INS_candidate1 500 0.5 3 1000 $NORMAL_BAM 11 > $OUTPUT/somatic_INS_candidate2"
-python3 ./src/compare_with_normal.INS.py $NORMAL_INS $OUTPUT/somatic_INS_candidate1 500 0.5 3 1000 $NORMAL_BAM 11 > $OUTPUT/somatic_INS_candidate2
+#echo "python ./src/compare_with_normal.INS.py $NORMAL_INS $OUTPUT/somatic_INS_candidate1 500 0.5 3 1000 $NORMAL_BAM 11 $SAMTOOLS > $OUTPUT/somatic_INS_candidate2"
+python3 ./src/compare_with_normal.INS.py $NORMAL_INS $OUTPUT/somatic_INS_candidate1 500 0.5 3 1000 $NORMAL_BAM 11 $SAMTOOLS > $OUTPUT/somatic_INS_candidate2
 
 #echo "python ./src/INS_filt3.py $OUTPUT/somatic_INS_candidate2 10 0.3 4 > $OUTPUT/somatic_INS_candidate3"
 python3 ./src/INS_filt3.py $OUTPUT/somatic_INS_candidate2 10 0.3 4 > $OUTPUT/somatic_INS_candidate3
