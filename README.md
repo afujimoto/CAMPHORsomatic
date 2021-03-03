@@ -98,6 +98,19 @@ Download chainSelf.txt file from http://hgdownload.soe.ucsc.edu/goldenPath/hg38/
 ```
 python ./src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2,2g > ./data/chainSelf.txt
 ```
+    
+   
+Automatatic obtaining the annotation data used from UCSC
+The download and format change for repeat information can be perfoemd with the commnds below.
+```
+cd CAMPHORsomatic
+mkdir ./data/
+curl -L http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/rmsk.txt.gz | zcat | grep Simple_repeat | python3 ./src/repeat/rmsk.py /dev/stdin > ./data/rmsk.txt
+curl -L http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/simpleRepeat.txt.gz | zcat | python3 ./src/repeat/simpleRepeat.py /dev/stdin | sort -k1,1 -k2,2g > ./data/simplerepeat.txt
+curl -L http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/genomicSuperDups.txt.gz | zcat | python3 ./src/repeat/seg_dup.py /dev/stdin | sort -k1,1 -k2,2g > ./data/seg_dup.txt
+curl -L http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/chainSelf.txt.gz | zcat | python3 ./src/repeat/ucsc_selfchain.py /dev/stdin | sort -k1,1 -k2,2g > ./data/chainSelf.txt
+```   
+       
 ## Data of noramal samples
 CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removes germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Users can merge these SV files of other normal samples, and save the same name in a new directory. The new directory can be used as <output directory of normal> in analysis with CAMPHOR_comparison.sh. This analysis increases power to remove germline SVs.
 
