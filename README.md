@@ -14,7 +14,7 @@ perl
 samtools (0.1.18 or higher)
 
 If samtools is not installed in the environment, the path to the execution file of samtools can be specified within the config file (pram.config).     
-
+     
 ## Input file
 ** Two bam files (one bam sorted by read name and another sorted by genome coordinates) for cancer and matched-normal samples        
 ** Index file (.bai) for bam files sorted by genome coordinates         
@@ -23,7 +23,7 @@ If samtools is not installed in the environment, the path to the execution file 
 
 ## Output file format
 vcf file of SVs (somatic_SV.vcf)
-
+     
 ## Usage
 ```
 cd <path to CAMPHOR>　　
@@ -31,7 +31,7 @@ sh CAMPHOR_SVcall.sh <bam of cancer sample (sorted by read name)> <bam of cancer
 sh CAMPHOR_SVcall.sh <bam of normal sample (sorted by read name)> <bam of normal sample (sorted by genome coordinate)> <output directory of normal>   
 sh CAMPHOR_comparison.sh <output directory of cancer> <output directory of normal> <bam of cancer sample (sorted by genome coordinate)> <bam of normal sample (sorted by genome coordinate)> <fastq file of cancer> <output directory of somatic SV>   
 ```
-
+     
 ## Example
 ```
 git clone https://github.com/afujimoto/CAMPHORsomatic　       
@@ -41,7 +41,7 @@ sh CAMPHOR_SVcall.sh ./example/sample2.sort_by_name.test.bam ./example/sample2.s
 sh CAMPHOR_comparison.sh ./sample1 ./sample2 ./example/sample1.sort.test.bam ./example/sample2.sort.test.bam ./example/sample1.sort.test.fastq SV       
 
 ```
-
+     
 ## Installation and usage via Docker
 Install Docker in yor computer, and run the below comamnds to install and run test.
 ```
@@ -101,7 +101,7 @@ python ./src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2,2
 ```
     
    
-Automatatic obtaining the annotation data used from UCSC
+Automatatic obtaining the annotation data used from UCSC  
 The download and format change for repeat information can be perfoemd with the commnds below.
 ```
 cd CAMPHORsomatic
@@ -114,7 +114,7 @@ curl -L http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/chainSelf.txt.gz
        
 ## Data of noramal samples
 CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removes germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Users can merge these SV files of other normal samples, and save the same name in a new directory. The new directory can be used as <output directory of normal> in analysis with CAMPHOR_comparison.sh. This analysis increases power to remove germline SVs.
-
+     
 ## Performance
 False positive rate was estimated to be ~7% with PCR in a liver cancer sample set (Fujimoto et al. in revision).
 
