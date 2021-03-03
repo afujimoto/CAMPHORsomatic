@@ -37,7 +37,7 @@ length_ratio = float(sys.argv[5])
 length_filter_min = int(sys.argv[6])
 bam = sys.argv[7]
 slice_col = int(sys.argv[8])
-path2samtools = int(sys.argv[9])
+path2samtools = sys.argv[9]
 
 for line in cancer_f:
 	line = line.replace("\n", "")
