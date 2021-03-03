@@ -64,7 +64,8 @@ docker run --rm -it -v <path to directory of cancer bam>:/cancer_input -v <path 
 We consider the parameter set in the provided configuration appropriate for 20x coverage WGS data.  
 
 We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false positives. But newer basecallers have increased accuracy and, smaller minimum indel length (50bp or smaller) can be used. For this, users can change the "MIN_INDEL_LENGTH" within the pram.config file.
-
+   
+   
 ## Repeat filtering
 Our method filters SV candidates with the provided repeat information (Repeat masker, Tandem repeat finder, Segmental duplication, Self-chain).        
 Please prepare annotation files with the following procedures.     
