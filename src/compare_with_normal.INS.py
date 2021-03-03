@@ -5,8 +5,8 @@ import re
 #chr1    47280   chr1    49577   1       DEL     2297
 #chr1    50682   chr1    51052   1       DEL     370
 
-def get_depth(chr, pos, bam):
-	cmd = "/share/amed_snt/WORK/fujimoto/src/tools/samtools-0.1.6/samtools view " + bam + " " + chr + ":" + pos + "-" + pos
+def get_depth(chr, pos, bam, path2samtools):
+	cmd = path2samtools + " view " + bam + " " + chr + ":" + pos + "-" + pos
 #	print(cmd)
 	contents = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True).communicate()[0]
 	contents = str(contents)
@@ -37,6 +37,7 @@ length_ratio = float(sys.argv[5])
 length_filter_min = int(sys.argv[6])
 bam = sys.argv[7]
 slice_col = int(sys.argv[8])
+path2samtools = int(sys.argv[9])
 
 for line in cancer_f:
 	line = line.replace("\n", "")
@@ -115,11 +116,11 @@ for line in cancer_f:
 	if "NC_" in line_l[0]:
 		depth1 = 1
 	else:
-		depth1 = get_depth(line_l[0], str(int(line_l[1]) - 100), bam)
+		depth1 = get_depth(line_l[0], str(int(line_l[1]) - 100), bam, path2samtools)
 	if "NC_" in line_l[2]:
 		depth2 = 1
 	else:
-		depth2 = get_depth(line_l[2], str(int(line_l[3]) + 100), bam)
+		depth2 = get_depth(line_l[2], str(int(line_l[3]) + 100), bam, path2samtools)
 
 	if len(normal_SV_out) == 0:
 		normal_SV_out = ["-"]
