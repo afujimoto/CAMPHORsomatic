@@ -42,6 +42,24 @@ sh CAMPHOR_comparison.sh ./sample1 ./sample2 ./example/sample1.sort.test.bam ./e
 
 ```
 
+## Installation and usage via Docker
+Install Docker in yor computer, and run the below comamnds to install and run test.
+```
+git clone https://github.com/afujimoto/CAMPHORsomatic
+cd <path to CAMPHORsomatic>
+docker build -t camphorsomatic .
+docker run --rm -it -v $PWD/sv:/CAMPHOR/SV -v $PWD/sample1:/CAMPHOR/sample1 -v $PWD/sample2:/CAMPHOR/sample2 camphorsomatic
+```
+
+If you want to run for your own data, please run the below comamnds.
+```
+git clone https://github.com/afujimoto/CAMPHORsomatic
+cd <path to CAMPHORsomatic>
+docker build -t camphorsomatic .
+docker run --rm -it -v <path to directory of cancer bam>:/cancer_input -v <path to directory of normal bam>:/normal_input -v <path to output directory>:/out -v <path to output directory of cancer>:/cancer_output -v <path to output directory of normal>:/normal_output -v <path to output directory>:/output camphorsomatic sh CAMPHOR_SVcall.sh cancer_input/<name of bam file of cancer sample (sorted by read name)> cancer_input/<name of bam of cancer sample (sorted by genome coordinate)> cancer_output && sh CAMPHOR_SVcall.sh normal_input/<name bam file of normal sample (sorted by read name)> normal_input/<name bam file of normal sample (sorted by genome coordinate)> normal_output && sh CAMPHOR_comparison.sh cancer_output normal_output cancer_input/<name of bam of cancer sample (sorted by genome coordinate)> normal_input/<name bam file of normal sample (sorted by genome coordinate)> /cancer_input/<name of fastq file of cancer> out
+```
+
+
 ## Parameter setting in configuration file
 We consider the parameter set in the provided configuration appropriate for 20x coverage WGS data.  
 
