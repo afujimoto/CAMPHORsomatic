@@ -20,7 +20,7 @@ If samtools is not installed in the environment, the path to the execution file 
 ** Index file (.bai) for bam files sorted by genome coordinates         
 ** Fastq file of cancer
 
-
+     
 ## Output file format
 vcf file of SVs (somatic_SV.vcf)
      
@@ -59,7 +59,7 @@ docker build -t camphorsomatic .
 docker run --rm -it -v <path to directory of cancer bam>:/cancer_input -v <path to directory of normal bam>:/normal_input -v <path to output directory>:/out -v <path to output directory of cancer>:/cancer_output -v <path to output directory of normal>:/normal_output -v <path to output directory>:/output camphorsomatic sh CAMPHOR_SVcall.sh cancer_input/<name of bam file of cancer sample (sorted by read name)> cancer_input/<name of bam of cancer sample (sorted by genome coordinate)> cancer_output && sh CAMPHOR_SVcall.sh normal_input/<name bam file of normal sample (sorted by read name)> normal_input/<name bam file of normal sample (sorted by genome coordinate)> normal_output && sh CAMPHOR_comparison.sh cancer_output normal_output cancer_input/<name of bam of cancer sample (sorted by genome coordinate)> normal_input/<name bam file of normal sample (sorted by genome coordinate)> /cancer_input/<name of fastq file of cancer> out
 ```
 
-
+     
 ## Parameter setting in configuration file
 We consider the parameter set in the provided configuration appropriate for 20x coverage WGS data.  
 
