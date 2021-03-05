@@ -1,5 +1,5 @@
 # CAMPHORsomatic
-somatic SV caller for long-reads
+Somatic SV caller for long-reads
 
 Overview
 1.	Identify SV candidates from bam files for cancer and matched normal samples
@@ -9,14 +9,14 @@ Overview
 
 * python3
 * pysam module of python
-* numpy
+* numpy module
 * perl
 
-samtools (0.1.18 or higher)
+samtools (version 0.1.18 or higher)
 
 If samtools is not installed in the environment, the path to the execution file of samtools can be specified within the config file (pram.config).
 
-## Input file
+## Input files
 
 * Two bam files (one bam sorted by read name and another sorted by genome coordinates) for cancer and matched-normal samples
 * Index file (.bai) for bam files sorted by genome coordinates
@@ -47,9 +47,9 @@ $ sh CAMPHOR_comparison.sh ./sample1 ./sample2 ./example/sample1.sort.test.bam .
 
 ## Installation and usage via Docker
 
-__Currentry, CAMPHORsomatic requires 16GB memory at build.__
+__Currently, CAMPHORsomatic requires 16GB memory at build.__
 
-Install Docker in yor computer, and run the below commands to install and run test.
+Install Docker in your computer, and run the following commands to install and run test.
 ```shell
 $ git clone https://github.com/afujimoto/CAMPHORsomatic
 $ cd <path to CAMPHORsomatic>
@@ -88,11 +88,11 @@ $ docker run --rm -it \
 ```
 
 
-## Parameter setting in configuration file
+## Parameter settings in configuration file
 
-We consider the parameter set in the provided configuration appropriate for 20x coverage WGS data.
+We consider the parameters set in the provided configuration appropriate for 20x coverage WGS data.
 
-We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false positives. But newer basecallers have increased accuracy and, smaller minimum indel length (50bp or smaller) can be used. For this, users can change the "MIN_INDEL_LENGTH" within the pram.config file.
+We developed this method with nanopore sequence data basecalled by albacore (total error rate =~ 15%), and set minimum indel length to 100bp to remove false positives. However, newer basecallers have increased accuracy and, smaller minimum indel length (50bp or smaller) can be used. Users can change the "MIN_INDEL_LENGTH" within the pram.config file.
 
 
 ## Repeat filtering
@@ -140,8 +140,7 @@ $ python ./src/repeat/ucsc_selfchain.py <path to chainSelf.txt> | sort -k1,1 -k2
 ```
 
 
-Automatic obtaining the annotation data used from UCSC
-Download and format change for repeat information can be performed with the commands below.
+Obtaining the annotation data used from UCSC Download and format change for repeat information can be performed automatically with the commands below.   
 
 ```shell
 $ cd CAMPHORsomatic
@@ -152,9 +151,9 @@ $ curl -L http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/genomicSuperDu
 $ curl -L http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/chainSelf.txt.gz | zcat | python3 ./src/repeat/ucsc_selfchain.py /dev/stdin | sort -k1,1 -k2,2g > ./data/chainSelf.txt
 ```
 
-## Data of noramal samples
+## Data of normal samples
 
-CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removes germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Users can merge these SV files of other normal samples, and save the same name in a new directory. The new directory can be used as <output directory of normal> in analysis with CAMPHOR_comparison.sh. This analysis increases power to remove germline SVs.
+CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removes germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Users can merge these SV files of multiple normal samples, and save as <SV type>_candidate.txt0 in a new directory. The new directory can be used as <output directory of normal> in analysis with CAMPHOR_comparison.sh. This analysis increases power to remove germline SVs.
 
 ## Performance
 False positive rate was estimated to be ~7% with PCR in a liver cancer sample set (Fujimoto et al. in revision).
