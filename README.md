@@ -120,7 +120,7 @@ False positive rate was estimated to be ~7% with PCR in a liver cancer sample se
 
 
 ## Licence
-GPL
+GPLv3
 
 ## Contact
 
