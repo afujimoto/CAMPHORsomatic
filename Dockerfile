@@ -1,5 +1,7 @@
 FROM ubuntu:20.04
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN apt-get update \
   && apt-get -y --no-install-recommends install \
     curl \
@@ -24,7 +26,7 @@ WORKDIR /CAMPHOR
 RUN zcat /rmsk.txt.gz | python3 ./src/repeat/rmsk.py /dev/stdin > data/rmsk.txt
 RUN zcat /simpleRepeat.txt.gz | python3 ./src/repeat/simpleRepeat.py /dev/stdin | sort -k1,1 -k2,2g > data/simplerepeat.txt
 RUN zcat /genomicSuperDups.txt.gz | python3 ./src/repeat/seg_dup.py /dev/stdin | sort -k1,1 -k2,2g > data/seg_dup.txt
-RUN zcat /chainSelf.txt.gz | zcat | python3 ./src/ucsc_selfchain.py /dev/stdin | sort -k1,1 -k2,2g > data/chainSelf.txt
+RUN zcat /chainSelf.txt.gz | python3 ./src/repeat/ucsc_selfchain.py /dev/stdin | sort -k1,1 -k2,2g > data/chainSelf.txt
 
 CMD sh CAMPHOR_SVcall.sh ./example/sample1.sort_by_name.test.bam ./example/sample1.sort.test.bam sample1 \
   && sh CAMPHOR_SVcall.sh ./example/sample2.sort_by_name.test.bam ./example/sample2.sort.test.bam sample2 \
