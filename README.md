@@ -156,7 +156,7 @@ $ curl -L http://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/chainSelf.txt.
 CAMPHOR_comparison.sh compares cancer SVs and normal SV candidates, and removes germline SVs. For this comparison, <SV type>_candidate.txt0 files in <output directory of normal> are used. Users can merge these SV files of multiple normal samples, and save as <SV type>_candidate.txt0 in a new directory. The new directory can be used as <output directory of normal> in analysis with CAMPHOR_comparison.sh. This analysis increases power to remove germline SVs.
 
 ## Performance
-False positive rate was estimated to be ~7% with PCR in a liver cancer sample set (Fujimoto et al. in revision).
+False positive rate was estimated to be ~7% with PCR in a liver cancer sample set (Fujimoto et al. Whole genome sequencing with long-reads reveals complex structure and origin of structural variation in human genetic variations and somatic mutations in cancer. Genome Medicine (2021).).
 
 
 ## Licence
